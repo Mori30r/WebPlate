@@ -16,7 +16,13 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={workSans.className}>{children}</body>
+            <body
+                className={
+                    (workSans.className, "px-7 py-3 bg-darkBg text-grey-0")
+                }
+            >
+                {children}
+            </body>
         </html>
     );
 }
