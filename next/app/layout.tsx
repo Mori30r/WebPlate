@@ -18,7 +18,8 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={
-                    (workSans.className, "px-7 py-3 bg-darkBg text-grey-0")
+                    (workSans.className,
+                    "px-7 py-3 bg-zinc-950 text-grey-0 h-svh w-full")
                 }
             >
                 {children}
