@@ -14,7 +14,7 @@ function Input({ name, type, label, placeHolder }: InputPropTypes) {
                 {label}
             </label>
             <input
-                className="rounded-md text-xs bg-zinc-800 px-3 py-2 placeholder-zinc-500"
+                className="rounded-md text-xs bg-zinc-800 p-3 placeholder-zinc-500 border-0 focus:ring-1 focus:ring-inset focus:ring-myGreen focus:outline-none"
                 type={type}
                 placeholder={placeHolder}
                 name={name}
