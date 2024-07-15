@@ -19,10 +19,12 @@ export default function RootLayout({
             <body
                 className={
                     (workSans.className,
-                    "px-7 py-3 bg-zinc-950 text-grey-0 h-svh w-full")
+                    "bg-zinc-950 text-grey-0 min-h-screen relative")
                 }
             >
-                {children}
+                <div className="px-7 py-3 grid">
+                    <main className="max-w-7xl mx-auto w-full">{children}</main>
+                </div>
             </body>
         </html>
     );
