@@ -1,17 +1,12 @@
-"use client";
-
 import React from "react";
-import EnjoyCard from "../_components/EnjoyCard";
-import PrimaryButton from "../_components/PrimaryButton";
-import { usePathname } from "next/navigation";
+import EnjoyCard from "@/app/_components/EnjoyCard";
+import AuthSwitch from "@/app/_components/AuthSwitch";
 
 interface AuthlayoutPropTypes {
     children: React.ReactElement;
 }
 
 function AuthLayout({ children }: AuthlayoutPropTypes) {
-    const path = usePathname().split("/").at(-1);
-
     return (
         <div className="max-w-8xl flex justify-between h-screen items-center">
             <div className="flex flex-col w-1/2 my-7 self-end">
@@ -25,20 +20,7 @@ function AuthLayout({ children }: AuthlayoutPropTypes) {
             </div>
             <div className="py-10 flex flex-col w-1/3 bg-darkBg rounded-3xl mx-auto gap-4 max-h-[620px]]">
                 <p className="text-3xl font-black mx-auto">LOGO</p>
-                <div className="flex gap-5 bg-zinc-800 p-4 mx-auto rounded-xl">
-                    <PrimaryButton
-                        href="/auth/signup"
-                        disabled={path !== "signup"}
-                    >
-                        Sign Up
-                    </PrimaryButton>
-                    <PrimaryButton
-                        href="/auth/login"
-                        disabled={path !== "login"}
-                    >
-                        Sign In
-                    </PrimaryButton>
-                </div>
+                <AuthSwitch />
                 {children}
             </div>
         </div>
