@@ -1,0 +1,179 @@
+{
+    "categories": [
+        {
+            "name": "drink",
+            "emoji": "/images/drink.png"
+        },
+        {
+            "name": "fries",
+            "emoji": "/images/fries.png"
+        },
+        {
+            "name": "hamburger",
+            "emoji": "/images/hamburger.png"
+        },
+        {
+            "name": "hotdog",
+            "emoji": "/images/hotdog.png"
+        },
+        {
+            "name": "pizza",
+            "emoji": "/images/pizza.png"
+        },
+        {
+            "name": "salad",
+            "emoji": "/images/salad.png"
+        }
+    ],
+    "orders": [
+        {
+            "meals": [
+                {
+                    "name": "Cesar Salad",
+                    "price": 18,
+                    "weight": 250,
+                    "image": "/images/bowl5.png"
+                },
+                {
+                    "name": "Hamburger",
+                    "price": 9,
+                    "weight": 374,
+                    "image": "/images/bowl2.png"
+                },
+                {
+                    "name": "Pasta",
+                    "price": 12,
+                    "weight": 412,
+                    "image": "/images/bowl3.png"
+                }
+            ],
+            "date": "24.03.2024"
+        },
+        {
+            "meals": [
+                {
+                    "name": "Pizza",
+                    "price": 19,
+                    "weight": 329,
+                    "image": "/images/bowl4.png"
+                },
+                {
+                    "name": "Fries",
+                    "price": 25,
+                    "weight": 452,
+                    "image": "/images/bowl5.png"
+                }
+            ],
+            "date": "12.02.2024"
+        },
+        {
+            "meals": [
+                {
+                    "name": "Chicken",
+                    "price": 12,
+                    "weight": 402,
+                    "image": "/images/bowl6.png"
+                }
+            ],
+            "date": "10.01.2024"
+        }
+    ],
+    "meals": [
+        {
+            "name": "Cesar Salad",
+            "price": 18,
+            "weight": 250,
+            "vegtables": [
+                { "name": "avacado" },
+                { "name": "lime" },
+                { "name": "olive oil" },
+                { "name": "salmon" },
+                { "name": "cherry tomatoes" },
+                { "name": "black pepper" },
+                { "name": "onion" }
+            ],
+            "image": "/images/bowl5.png",
+            "calories": 222
+        },
+        {
+            "name": "Hamburger",
+            "price": 9,
+            "weight": 374,
+            "vegtables": [
+                { "name": "avacado" },
+                { "name": "lime" },
+                { "name": "olive oil" },
+                { "name": "salmon" },
+                { "name": "cherry tomatoes" },
+                { "name": "black pepper" },
+                { "name": "onion" }
+            ],
+            "image": "/images/bowl2.png",
+            "calories": 376
+        },
+        {
+            "name": "Pasta",
+            "price": 12,
+            "weight": 412,
+            "vegtables": [
+                { "name": "avacado" },
+                { "name": "lime" },
+                { "name": "olive oil" },
+                { "name": "salmon" },
+                { "name": "cherry tomatoes" },
+                { "name": "black pepper" },
+                { "name": "onion" }
+            ],
+            "image": "/images/bowl3.png",
+            "calories": 209
+        },
+        {
+            "name": "Pizza",
+            "price": 19,
+            "weight": 329,
+            "vegtables": [
+                { "name": "avacado" },
+                { "name": "lime" },
+                { "name": "olive oil" },
+                { "name": "salmon" },
+                { "name": "cherry tomatoes" },
+                { "name": "black pepper" },
+                { "name": "onion" }
+            ],
+            "image": "/images/bowl4.png",
+            "calories": 221
+        },
+        {
+            "name": "Fries",
+            "price": 25,
+            "weight": 452,
+            "vegtables": [
+                { "name": "avacado" },
+                { "name": "lime" },
+                { "name": "olive oil" },
+                { "name": "salmon" },
+                { "name": "cherry tomatoes" },
+                { "name": "black pepper" },
+                { "name": "onion" }
+            ],
+            "image": "/images/bowl5.png",
+            "calories": 274
+        },
+        {
+            "name": "Chicken",
+            "price": 12,
+            "weight": 402,
+            "vegtables": [
+                { "name": "avacado" },
+                { "name": "lime" },
+                { "name": "olive oil" },
+                { "name": "salmon" },
+                { "name": "cherry tomatoes" },
+                { "name": "black pepper" },
+                { "name": "onion" }
+            ],
+            "image": "/images/bowl6.png",
+            "calories": 380
+        }
+    ]
+}

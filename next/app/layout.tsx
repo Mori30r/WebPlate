@@ -17,14 +17,9 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={
-                    (workSans.className,
-                    "bg-zinc-950 text-grey-0 min-h-screen relative")
-                }
+                className={`${workSans.className} bg-zinc-950 text-grey-0 min-h-screen relative`}
             >
-                <div className="px-7 py-3 grid">
-                    <main className="max-w-7xl mx-auto w-full">{children}</main>
-                </div>
+                <main className="max-w-7xl mx-auto">{children}</main>
             </body>
         </html>
     );
