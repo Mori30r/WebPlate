@@ -112,7 +112,7 @@ LOGGING = {
         "console": {"class": "logging.StreamHandler", "level": "INFO"},
         "file": {
             "class": "logging.FileHandler",
-            "filename": "delevery.log",
+            "filename": "/tmp/delevery.log",
             "formatter": "verbose",
         },
     },

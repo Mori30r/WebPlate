@@ -2,16 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-"""
-CLASSES:
-        Users(Profile): id - firstName - lastName - image - phoneNumber - email - addresses - orders. -*-
-        Address: id - name - detail - latitude - longitude - user. -*-
-        Orders: id - user - address - meals - totalPrice - status(submit, cooking, onWay, delivery) - createdAt.  -*-
-        Meals: id - name - rate - duration - calories - weight - vegetables - price - image - category. -*-
-        Vegtables: id - name - emoji(image). -*-
-        
-"""
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
