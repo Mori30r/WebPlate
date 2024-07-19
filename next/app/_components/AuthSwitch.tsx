@@ -11,16 +11,12 @@ function AuthSwitch() {
         <div className="flex gap-5 bg-zinc-800 p-4 mx-auto rounded-xl">
             <PrimaryButton
                 size="big"
-                href="/auth/signup"
+                href="/signup"
                 disabled={path !== "signup"}
             >
                 Sign Up
             </PrimaryButton>
-            <PrimaryButton
-                size="big"
-                href="/auth/login"
-                disabled={path !== "login"}
-            >
+            <PrimaryButton size="big" href="/login" disabled={path !== "login"}>
                 Sign In
             </PrimaryButton>
         </div>

@@ -1,21 +1,22 @@
-import Header from "@/app/_components/Header";
-import MainBanner from "@/app/_components/MainBanner";
-import MealsCardList from "@/app/_components/MealsCardList";
-import CategoriesSideBar from "@/app/_components/CategoriesSideBar";
-import LastOrdersSideBar from "@/app/_components/LastOrdersSideBar";
+import PrimaryButton from "@/app/_components/PrimaryButton";
+import ImagesGrid from "@/app/_components/ImagesGrid";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Welcome to WebPlate",
+    description: "Order WebPlate Food Fast and Easy",
+};
 
 export default function Page() {
     return (
-        <div className="flex flex-col gap-5">
-            <Header />
-            <div className="grid grid-cols-[75px_1fr_350px] gap-5">
-                <CategoriesSideBar />
-                <div className="flex flex-col gap-5">
-                    <MainBanner />
-                    <MealsCardList />
-                </div>
-                <LastOrdersSideBar />
+        <div className="w-full flex flex-col py-5 gap-5">
+            <div className="flex flex-col items-center gap-3">
+                <h1 className="text-8xl text-grey-0 font-black">WEB PLATE</h1>
+                <PrimaryButton size="big" href="/signup">
+                    Let&rsquo;s Start
+                </PrimaryButton>
             </div>
+            <ImagesGrid />
         </div>
     );
 }

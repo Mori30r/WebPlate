@@ -1,27 +1,4 @@
-import React from "react";
-import PrimaryButton from "./PrimaryButton";
-import Dummy from "@/app/dummy.json";
 import Image from "next/image";
-
-function MealsCardList() {
-    return (
-        <div className="mb-4">
-            <div className="flex flex-col px-2 gap-5">
-                <div className="flex justify-between items-center">
-                    <p className="text-3xl font-bold">For you</p>
-                    <PrimaryButton href="./" size="medium">
-                        See More &gt;&gt;
-                    </PrimaryButton>
-                </div>
-                <div className="grid grid-cols-3 items-center gap-2 gap-y-24 mt-20">
-                    {Dummy.meals.map((meal) => {
-                        return <MealCard key={meal.name} meal={meal} />;
-                    })}
-                </div>
-            </div>
-        </div>
-    );
-}
 
 interface MealCardPropTypes {
     meal: {
@@ -59,4 +36,4 @@ function MealCard({ meal }: MealCardPropTypes) {
     );
 }
 
-export default MealsCardList;
+export default MealCard;
