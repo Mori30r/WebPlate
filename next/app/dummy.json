@@ -1,46 +1,56 @@
 {
     "categories": [
         {
+            "id": 1,
             "name": "drink",
             "emoji": "/images/drink.png"
         },
         {
+            "id": 8,
             "name": "fries",
             "emoji": "/images/fries.png"
         },
         {
+            "id": 9,
             "name": "hamburger",
             "emoji": "/images/hamburger.png"
         },
         {
+            "id": 12,
             "name": "hotdog",
             "emoji": "/images/hotdog.png"
         },
         {
+            "id": 52,
             "name": "pizza",
             "emoji": "/images/pizza.png"
         },
         {
+            "id": 23,
             "name": "salad",
             "emoji": "/images/salad.png"
         }
     ],
     "orders": [
         {
+            "id": 17,
             "meals": [
                 {
+                    "id": 92,
                     "name": "Cesar Salad",
                     "price": 18,
                     "weight": 250,
                     "image": "/images/bowl5.png"
                 },
                 {
+                    "id": 61,
                     "name": "Hamburger",
                     "price": 9,
                     "weight": 374,
                     "image": "/images/bowl2.png"
                 },
                 {
+                    "id": 22,
                     "name": "Pasta",
                     "price": 12,
                     "weight": 412,
@@ -50,14 +60,17 @@
             "date": "24.03.2024"
         },
         {
+            "id": 84,
             "meals": [
                 {
+                    "id": 1,
                     "name": "Pizza",
                     "price": 19,
                     "weight": 329,
                     "image": "/images/bowl4.png"
                 },
                 {
+                    "id": 70,
                     "name": "Fries",
                     "price": 25,
                     "weight": 452,
@@ -67,8 +80,10 @@
             "date": "12.02.2024"
         },
         {
+            "id": 2,
             "meals": [
                 {
+                    "id": 28,
                     "name": "Chicken",
                     "price": 12,
                     "weight": 402,
@@ -80,97 +95,109 @@
     ],
     "meals": [
         {
+            "id": 50,
             "name": "Cesar Salad",
             "price": 18,
             "weight": 250,
             "vegtables": [
-                { "name": "avacado" },
-                { "name": "lime" },
-                { "name": "olive oil" },
-                { "name": "salmon" },
-                { "name": "cherry tomatoes" },
-                { "name": "black pepper" },
-                { "name": "onion" }
+                { "name": "bacon", "emoji": "/images/bacon.png" },
+                { "name": "lemon", "emoji": "/images/lemon.png" },
+                { "name": "broccoli", "emoji": "/images/broccoli.png" },
+                { "name": "carrot", "emoji": "/images/carrot.png" },
+                { "name": "egg", "emoji": "/images/egg.png" },
+                { "name": "eggplant", "emoji": "/images/eggplant.png" },
+                { "name": "hot pepper", "emoji": "/images/hot_pepper.png" },
+                { "name": "potato", "emoji": "/images/potato.png" }
             ],
             "image": "/images/bowl5.png",
             "calories": 222
         },
         {
+            "id": 22,
             "name": "Hamburger",
             "price": 9,
             "weight": 374,
             "vegtables": [
-                { "name": "avacado" },
-                { "name": "lime" },
-                { "name": "olive oil" },
-                { "name": "salmon" },
-                { "name": "cherry tomatoes" },
-                { "name": "black pepper" },
-                { "name": "onion" }
+                { "name": "bacon", "emoji": "/images/bacon.png" },
+                { "name": "lemon", "emoji": "/images/lemon.png" },
+                { "name": "broccoli", "emoji": "/images/broccoli.png" },
+                { "name": "carrot", "emoji": "/images/carrot.png" },
+                { "name": "egg", "emoji": "/images/egg.png" },
+                { "name": "eggplant", "emoji": "/images/eggplant.png" },
+                { "name": "hot pepper", "emoji": "/images/hot_pepper.png" },
+                { "name": "potato", "emoji": "/images/potato.png" }
             ],
             "image": "/images/bowl2.png",
             "calories": 376
         },
         {
+            "id": 15,
             "name": "Pasta",
             "price": 12,
             "weight": 412,
             "vegtables": [
-                { "name": "avacado" },
-                { "name": "lime" },
-                { "name": "olive oil" },
-                { "name": "salmon" },
-                { "name": "cherry tomatoes" },
-                { "name": "black pepper" },
-                { "name": "onion" }
+                { "name": "lemon", "emoji": "/images/lemon.png" },
+                { "name": "bacon", "emoji": "/images/bacon.png" },
+                { "name": "broccoli", "emoji": "/images/broccoli.png" },
+                { "name": "egg", "emoji": "/images/egg.png" },
+                { "name": "carrot", "emoji": "/images/carrot.png" },
+                { "name": "eggplant", "emoji": "/images/eggplant.png" },
+                { "name": "potato", "emoji": "/images/potato.png" },
+                { "name": "hot pepper", "emoji": "/images/hot_pepper.png" }
             ],
             "image": "/images/bowl3.png",
             "calories": 209
         },
         {
+            "id": 96,
             "name": "Pizza",
             "price": 19,
             "weight": 329,
             "vegtables": [
-                { "name": "avacado" },
-                { "name": "lime" },
-                { "name": "olive oil" },
-                { "name": "salmon" },
-                { "name": "cherry tomatoes" },
-                { "name": "black pepper" },
-                { "name": "onion" }
+                { "name": "broccoli", "emoji": "/images/broccoli.png" },
+                { "name": "bacon", "emoji": "/images/bacon.png" },
+                { "name": "carrot", "emoji": "/images/carrot.png" },
+                { "name": "lemon", "emoji": "/images/lemon.png" },
+                { "name": "eggplant", "emoji": "/images/eggplant.png" },
+                { "name": "egg", "emoji": "/images/egg.png" },
+                { "name": "hot pepper", "emoji": "/images/hot_pepper.png" },
+                { "name": "potato", "emoji": "/images/potato.png" }
             ],
             "image": "/images/bowl4.png",
             "calories": 221
         },
         {
+            "id": 45,
             "name": "Fries",
             "price": 25,
             "weight": 452,
             "vegtables": [
-                { "name": "avacado" },
-                { "name": "lime" },
-                { "name": "olive oil" },
-                { "name": "salmon" },
-                { "name": "cherry tomatoes" },
-                { "name": "black pepper" },
-                { "name": "onion" }
+                { "name": "bacon", "emoji": "/images/bacon.png" },
+                { "name": "lemon", "emoji": "/images/lemon.png" },
+                { "name": "broccoli", "emoji": "/images/broccoli.png" },
+                { "name": "carrot", "emoji": "/images/carrot.png" },
+                { "name": "eggplant", "emoji": "/images/eggplant.png" },
+                { "name": "egg", "emoji": "/images/egg.png" },
+                { "name": "hot pepper", "emoji": "/images/hot_pepper.png" },
+                { "name": "potato", "emoji": "/images/potato.png" }
             ],
             "image": "/images/bowl5.png",
             "calories": 274
         },
         {
+            "id": 1,
             "name": "Chicken",
             "price": 12,
             "weight": 402,
             "vegtables": [
-                { "name": "avacado" },
-                { "name": "lime" },
-                { "name": "olive oil" },
-                { "name": "salmon" },
-                { "name": "cherry tomatoes" },
-                { "name": "black pepper" },
-                { "name": "onion" }
+                { "name": "bacon", "emoji": "/images/bacon.png" },
+                { "name": "lemon", "emoji": "/images/lemon.png" },
+                { "name": "broccoli", "emoji": "/images/broccoli.png" },
+                { "name": "carrot", "emoji": "/images/carrot.png" },
+                { "name": "egg", "emoji": "/images/egg.png" },
+                { "name": "eggplant", "emoji": "/images/eggplant.png" },
+                { "name": "hot pepper", "emoji": "/images/hot_pepper.png" },
+                { "name": "potato", "emoji": "/images/potato.png" }
             ],
             "image": "/images/bowl6.png",
             "calories": 380
