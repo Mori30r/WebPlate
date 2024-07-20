@@ -13,7 +13,9 @@ import { Meal } from "@/types/global";
 
 function Page() {
     const mealId = Number(useParams().mealId);
-    const meal: Meal = Dummy.meals.filter((el) => el.id === mealId).at(0);
+    const meal: Meal = Dummy.meals.filter(
+        (el): el is Meal => el !== undefined && el.id === mealId
+    )[0];
 
     return (
         <div className="flex flex-col gap-10 overflow-hidden justify-between relative">
