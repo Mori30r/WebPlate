@@ -18,7 +18,7 @@ function LoginForm() {
                     placeHolder="Enter Password..."
                 />
             </div>
-            <SubmitButton>Login</SubmitButton>
+            <SubmitButton className="mx-auto">Login</SubmitButton>
         </form>
     );
 }

@@ -8,7 +8,7 @@ function LastOrdersSideBar() {
         <div className="rounded-2xl flex flex-col p-5 bg-zinc-900 gap-5 mb-4">
             <div className="flex justify-between items-center">
                 <p className="font-semibold text-2xl">Last Orders</p>
-                <PrimaryButton size="small" href="./">
+                <PrimaryButton paddingX="px-6" radius="rounded-full" href="./">
                     See all
                 </PrimaryButton>
             </div>
@@ -37,7 +37,12 @@ function LastOrdersSideBarItem({ order }: LastOrdersSideBarItemPropTypes) {
             })}
             <div className="flex px-2 mt-2 justify-between items-center">
                 <p className="text-zinc-400 text-sm">{order.date}</p>
-                <PrimaryButton color="white" href="./" size="small">
+                <PrimaryButton
+                    bgColor="bg-zinc-100"
+                    textColor="text-zinc-800"
+                    radius="rounded-full"
+                    href="./"
+                >
                     Repeat
                 </PrimaryButton>
             </div>

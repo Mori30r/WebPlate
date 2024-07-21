@@ -5,42 +5,26 @@ interface ButtonProps {
     href: string;
     children: string;
     disabled?: boolean;
-    size: "small" | "medium" | "big";
-    color?: "green" | "white";
+    bgColor?: "bg-myGreen" | "bg-zinc-100";
+    textColor?: "text-zinc-800" | "text-zinc-100";
+    paddingX?: "px-2" | "px-6" | "px-10";
+    radius?: "rounded-full" | "rounded-md";
 }
 
 export default function PrimaryButton({
     href,
     disabled,
     children,
-    size,
-    color = "green",
+    bgColor = "bg-myGreen",
+    textColor = "text-zinc-100",
+    radius = "rounded-md",
+    paddingX = "px-6",
 }: ButtonProps) {
-    function getPadding(size: "small" | "medium" | "big"): string {
-        switch (size) {
-            case "small":
-                return "2";
-            case "medium":
-                return "6";
-            case "big":
-                return "10";
-        }
-    }
-
-    function getColor(color: string) {
-        if (color === "green") return "bg-myGreen";
-        else if (color === "white") return "bg-zinc-100";
-    }
+    const disabledStyles = disabled ? "bg-transparent hover:ring-1" : bgColor;
 
     return (
         <Link
-            className={`${
-                disabled ? "bg-transparent hover:ring-1" : `${getColor(color)}`
-            } font-semibold ${
-                size === "small" ? "rounded-full text-sm" : "rounded-md"
-            } px-${getPadding(size)} py-2 hover:ring-myGreen  ${
-                color === "white" && "text-zinc-800"
-            }`}
+            className={`${disabledStyles} ${radius} ${paddingX} ${textColor} py-2 hover:ring-myGreen font-semibold`}
             href={href}
         >
             {children}

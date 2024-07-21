@@ -32,7 +32,7 @@ function SignupForm() {
                 type="password"
                 placeHolder="Enter Your Password Again"
             />
-            <SubmitButton>Let&rsquo;s Start</SubmitButton>
+            <SubmitButton className="mx-auto">Let&rsquo;s Start</SubmitButton>
         </form>
     );
 }

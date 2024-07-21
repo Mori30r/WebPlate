@@ -12,3 +12,9 @@ export interface Meal {
     image: string;
     calories: number;
 }
+
+export interface Order {
+    id: number;
+    date: string;
+    meals: Meal[];
+}
