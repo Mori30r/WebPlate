@@ -18,3 +18,15 @@ export interface Order {
     date: string;
     meals: Meal[];
 }
+
+export interface HeaderLinkPropTypes {
+    children: string;
+    href: string;
+}
+
+export interface HeaderToolbarPropTypes {
+    children: React.ReactElement;
+    color: string;
+    isProfile?: boolean;
+    href: string;
+}

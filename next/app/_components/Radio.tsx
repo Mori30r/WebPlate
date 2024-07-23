@@ -5,13 +5,15 @@ interface Props {
     name: string;
     value: string;
     id: string;
+    onChange?: () => void;
 }
 
-function RadioInput({ children, name, value, id }: Props) {
+function RadioInput({ children, name, value, id, onChange }: Props) {
     return (
         <div className="flex gap-2 items-center">
             <div className="flex items-center relative">
                 <input
+                    onChange={onChange}
                     className="peer appearance-none w-4 h-4 border-2 border-zinc-600 rounded-full checked:border-myGreen"
                     type="radio"
                     name={name}

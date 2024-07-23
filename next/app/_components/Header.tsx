@@ -2,9 +2,10 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 
-import { HiInboxArrowDown, HiAcademicCap } from "react-icons/hi2";
+import { HiShoppingBag } from "react-icons/hi2";
 import { HiHeart } from "react-icons/hi2";
 import Devil from "@/public/images/devil.png";
+import { HeaderLinkPropTypes, HeaderToolbarPropTypes } from "@/types/global";
 
 function Header() {
     return (
@@ -21,23 +22,18 @@ function Header() {
                 <HeaderLink href="">Help Center</HeaderLink>
             </div>
             <div className="flex gap-5 justify-end items-center">
-                <HeaderToolbarItem color="bg-zinc-800">
+                <HeaderToolbarItem href="" color="bg-zinc-800">
                     <HiHeart size={22} color="red" />
                 </HeaderToolbarItem>
-                <HeaderToolbarItem color="bg-myGreen">
-                    <HiInboxArrowDown size={22} />
+                <HeaderToolbarItem href="/order" color="bg-myGreen">
+                    <HiShoppingBag size={22} />
                 </HeaderToolbarItem>
-                <HeaderToolbarItem color="bg-purple-500" isProfile>
+                <HeaderToolbarItem href="" color="bg-purple-500" isProfile>
                     <Image src={Devil} width={22} alt="devil" />
                 </HeaderToolbarItem>
             </div>
         </div>
     );
-}
-
-interface HeaderLinkPropTypes {
-    children: string;
-    href: string;
 }
 
 function HeaderLink({ children, href }: HeaderLinkPropTypes) {
@@ -48,25 +44,21 @@ function HeaderLink({ children, href }: HeaderLinkPropTypes) {
     );
 }
 
-interface HeaderToolbarPropTypes {
-    children: React.ReactElement;
-    color: string;
-    isProfile?: boolean;
-}
-
 function HeaderToolbarItem({
     children,
     color,
     isProfile,
+    href,
 }: HeaderToolbarPropTypes) {
     return (
-        <div
+        <Link
+            href={href}
             className={`${color} ${
                 isProfile ? "rounded-full" : "rounded-xl"
             } p-3`}
         >
             {children}
-        </div>
+        </Link>
     );
 }
 

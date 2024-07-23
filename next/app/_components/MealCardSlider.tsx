@@ -4,11 +4,7 @@ import React from "react";
 import { useSwiperSlide } from "swiper/react";
 import { Meal } from "@/types/global";
 
-interface Props {
-    meal: Meal;
-}
-
-function DetailSlide({ meal }: Props) {
+function MealCardSlider({ meal }: { meal: Meal }) {
     const slide = useSwiperSlide();
     return (
         <div
@@ -49,4 +45,4 @@ function DetailSlide({ meal }: Props) {
     );
 }
 
-export default DetailSlide;
+export default MealCardSlider;

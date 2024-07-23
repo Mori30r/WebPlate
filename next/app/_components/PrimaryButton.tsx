@@ -5,7 +5,7 @@ interface ButtonProps {
     href: string;
     children: string;
     disabled?: boolean;
-    bgColor?: "bg-myGreen" | "bg-zinc-100";
+    bgColor?: "bg-myGreen" | "bg-zinc-100" | "transparent";
     textColor?: "text-zinc-800" | "text-zinc-100";
     paddingX?: "px-2" | "px-6" | "px-10";
     radius?: "rounded-full" | "rounded-md";

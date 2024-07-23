@@ -1,14 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useParams } from "next/navigation";
 import Dummy from "@/app/dummy.json";
 import PrimaryButton from "@/app/_components/PrimaryButton";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import DetailSlide from "@/app/_components/MealCardSlider";
 import "swiper/css";
 
-import DetailSlide from "@/app/_components/DetailSlide";
-import { useParams } from "next/navigation";
 import { Meal } from "@/types/global";
 
 function Page() {
