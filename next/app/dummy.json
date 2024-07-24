@@ -39,6 +39,7 @@
                     "id": 50,
                     "name": "Cesar Salad",
                     "price": 18,
+                    "rate": 1.1,
                     "weight": 250,
                     "vegtables": [
                         { "name": "bacon", "emoji": "/images/bacon.png" },
@@ -54,12 +55,14 @@
                         { "name": "potato", "emoji": "/images/potato.png" }
                     ],
                     "image": "/images/bowl5.png",
-                    "calories": 222
+                    "calories": 222,
+                    "categoryId": 4
                 },
                 {
                     "id": 22,
                     "name": "Hamburger",
                     "price": 9,
+                    "rate": 4.1,
                     "weight": 374,
                     "vegtables": [
                         { "name": "bacon", "emoji": "/images/bacon.png" },
@@ -75,12 +78,14 @@
                         { "name": "potato", "emoji": "/images/potato.png" }
                     ],
                     "image": "/images/bowl2.png",
-                    "calories": 376
+                    "calories": 376,
+                    "categoryId": 3
                 },
                 {
                     "id": 15,
                     "name": "Pasta",
                     "price": 12,
+                    "rate": 2.6,
                     "weight": 412,
                     "vegtables": [
                         { "name": "lemon", "emoji": "/images/lemon.png" },
@@ -96,7 +101,8 @@
                         }
                     ],
                     "image": "/images/bowl3.png",
-                    "calories": 209
+                    "calories": 209,
+                    "categoryId": 2
                 }
             ],
             "date": "24.03.2024"
@@ -108,6 +114,7 @@
                     "id": 96,
                     "name": "Pizza",
                     "price": 19,
+                    "rate": 3.5,
                     "weight": 329,
                     "vegtables": [
                         { "name": "broccoli", "emoji": "/images/broccoli.png" },
@@ -123,12 +130,14 @@
                         { "name": "potato", "emoji": "/images/potato.png" }
                     ],
                     "image": "/images/bowl4.png",
-                    "calories": 221
+                    "calories": 221,
+                    "categoryId": 6
                 },
                 {
-                    "id": 45,
+                    "id": 23,
                     "name": "Fries",
                     "price": 25,
+                    "rate": 1.8,
                     "weight": 452,
                     "vegtables": [
                         { "name": "bacon", "emoji": "/images/bacon.png" },
@@ -144,7 +153,8 @@
                         { "name": "potato", "emoji": "/images/potato.png" }
                     ],
                     "image": "/images/bowl5.png",
-                    "calories": 274
+                    "calories": 274,
+                    "categoryId": 1
                 }
             ],
             "date": "12.02.2024"
@@ -153,10 +163,11 @@
             "id": 2,
             "meals": [
                 {
-                    "id": 22,
-                    "name": "Hamburger",
-                    "price": 9,
-                    "weight": 374,
+                    "id": 14,
+                    "name": "Chicken",
+                    "price": 12,
+                    "rate": 4.1,
+                    "weight": 402,
                     "vegtables": [
                         { "name": "bacon", "emoji": "/images/bacon.png" },
                         { "name": "lemon", "emoji": "/images/lemon.png" },
@@ -170,8 +181,9 @@
                         },
                         { "name": "potato", "emoji": "/images/potato.png" }
                     ],
-                    "image": "/images/bowl2.png",
-                    "calories": 376
+                    "image": "/images/bowl6.png",
+                    "calories": 380,
+                    "categoryId": 2
                 }
             ],
             "date": "10.01.2024"
