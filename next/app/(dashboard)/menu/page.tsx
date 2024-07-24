@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 import Dummy from "@/app/dummy.json";
 import MealsCardList from "@/app/_components/MealsCardList";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Category, Meal, SortBy } from "@/types/global";
+import Spinner from "@/app/_components/Spinner";
 
 function Page() {
     const router = useRouter();
@@ -39,19 +40,20 @@ function Page() {
 
     // handle sort
     let sortedMeals = filteredMeals;
+    const sortBy = searchParams.get("sortBy");
 
-    if (searchParams.get("sortBy") === "rateHighToLow") {
+    if (sortBy === "rateHighToLow") {
         sortedMeals = filteredMeals.sort((prev, curr) => curr.rate - prev.rate);
     }
-    if (searchParams.get("sortBy") === "rateLowToHigh") {
+    if (sortBy === "rateLowToHigh") {
         sortedMeals = filteredMeals.sort((prev, curr) => prev.rate - curr.rate);
     }
-    if (searchParams.get("sortBy") === "priceLowToHigh") {
+    if (sortBy === "priceLowToHigh") {
         sortedMeals = filteredMeals.sort(
             (prev, curr) => prev.price - curr.price
         );
     }
-    if (searchParams.get("sortBy") === "priceHightToLow") {
+    if (sortBy === "priceHightToLow") {
         sortedMeals = filteredMeals.sort(
             (prev, curr) => curr.price - prev.price
         );
@@ -83,9 +85,11 @@ function Page() {
                     </select>
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-5 gap-y-24 mt-24">
-                <MealsCardList meals={sortedMeals} />
-            </div>
+            <Suspense fallback={<Spinner />}>
+                <div className="grid grid-cols-4 gap-5 gap-y-24 mt-24">
+                    <MealsCardList meals={sortedMeals} />
+                </div>
+            </Suspense>
         </div>
     );
 }
