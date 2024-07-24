@@ -11,12 +11,20 @@ export interface Meal {
     vegtables: Vegtables[];
     image: string;
     calories: number;
+    rate: float;
+    categoryId: number;
 }
 
 export interface Order {
     id: number;
     date: string;
     meals: Meal[];
+}
+
+export interface Category {
+    id: number;
+    name: string;
+    emoji: string;
 }
 
 export interface HeaderLinkPropTypes {
@@ -30,3 +38,9 @@ export interface HeaderToolbarPropTypes {
     isProfile?: boolean;
     href: string;
 }
+
+export type SortBy =
+    | "rateHighToLow"
+    | "rateLowToHigh"
+    | "priceLowToHigh"
+    | "priceHightToLow";

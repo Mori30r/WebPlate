@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import Dummy from "@/app/dummy.json";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Category } from "@/types/global";
 
 function CategoriesSideBar() {
     return (
@@ -13,9 +13,8 @@ function CategoriesSideBar() {
                 {Dummy.categories.map((category) => {
                     return (
                         <CategorySideBarItem
-                            emoji={category.emoji}
-                            name={category.name}
-                            key={category.name}
+                            category={category}
+                            key={category.id}
                         />
                     );
                 })}
@@ -24,25 +23,25 @@ function CategoriesSideBar() {
     );
 }
 
-interface CategorySideBarItemPropTypes {
-    emoji: string;
-    name: string;
-}
-
-function CategorySideBarItem({ emoji, name }: CategorySideBarItemPropTypes) {
+function CategorySideBarItem({ category }: { category: Category }) {
     const router = useRouter();
     const searchParams = useSearchParams();
 
     function handleClick() {
         const params = new URLSearchParams(searchParams);
-        params.set("category", name);
+        params.set("category", String(category.id));
 
         router.replace(`/menu?${params.toString()}`, { scroll: false });
     }
 
     return (
         <div onClick={handleClick} className="cursor-pointer">
-            <Image src={emoji} width={25} height={25} alt={name} />
+            <Image
+                src={category.emoji}
+                width={25}
+                height={25}
+                alt={category.name}
+            />
         </div>
     );
 }
