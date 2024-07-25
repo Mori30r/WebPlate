@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=100)
@@ -17,14 +16,15 @@ class Profile(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
-    
+
     def __str__(self):
         return self.name
+
 
 class Ingredient(models.Model):
     name = models.CharField(max_length=100)
     emoji = models.ImageField(upload_to='ingredients/')
-    
+
     def __str__(self):
         return self.name
 
@@ -40,7 +40,7 @@ class Meal(models.Model):
     image = models.ImageField(upload_to='meals/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     quantity_available = models.IntegerField(default=50)
-    
+
     def __str__(self):
         return self.name
 
@@ -51,7 +51,7 @@ class Address(models.Model):
     detail = models.TextField()
     latitude = models.DecimalField(max_digits=9, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
-    
+
     def __str__(self):
         return str(f"{self.name}--{self.name}")
 
@@ -61,10 +61,12 @@ class Cart(models.Model):
     meals = models.ManyToManyField(Meal, through='MealItem')
     created_at = models.DateTimeField(auto_now=True)
 
+
 class MealItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     meal = models.ForeignKey(Meal, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
 
 class Order(models.Model):
     STATUS_CHOICES = [
