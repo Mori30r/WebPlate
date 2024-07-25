@@ -1,34 +1,68 @@
 "use client";
 
 import React from "react";
-import PrimaryButton from "./PrimaryButton";
 import Input from "./Input";
 import SubmitButton from "./SubmitButton";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { signUpSchema } from "../_lib/validators";
+import { User } from "@/types/global";
 
 function SignupForm() {
+    const { register, handleSubmit, control, reset } = useForm({
+        resolver: yupResolver(signUpSchema),
+    });
+
+    async function handleSignup(userInput: User) {
+        // signup(userInput);
+        console.log(userInput);
+        // reset();
+    }
+
     return (
-        <form className="flex flex-col h-full gap-4 px-6">
+        <form
+            onSubmit={handleSubmit(handleSignup)}
+            className="flex flex-col h-full gap-4 px-6"
+        >
+            <div className="flex justify-between gap-4">
+                <Input
+                    register={{ ...register("first_name") }}
+                    control={control}
+                    label="First Name"
+                    id="first_name"
+                    type="string"
+                    placeHolder="Enter Your First Name..."
+                />
+                <Input
+                    register={{ ...register("last_name") }}
+                    control={control}
+                    label="Last Name"
+                    id="last_name"
+                    type="string"
+                    placeHolder="Enter Your Last Name..."
+                />
+            </div>
             <Input
-                label="Username"
-                name="username"
-                type="string"
-                placeHolder="Enter Your Username..."
-            />
-            <Input
+                register={{ ...register("email") }}
+                control={control}
                 label="Email"
-                name="email"
+                id="email"
                 type="string"
                 placeHolder="Enter Email..."
             />
             <Input
+                register={{ ...register("password") }}
+                control={control}
                 label="Password"
-                name="password"
+                id="password"
                 type="password"
                 placeHolder="Enter Password..."
             />
             <Input
+                register={{ ...register("password2") }}
+                control={control}
                 label="Confirm Password"
-                name="password2"
+                id="password2"
                 type="password"
                 placeHolder="Enter Your Password Again"
             />

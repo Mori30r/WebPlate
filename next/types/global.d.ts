@@ -27,6 +27,14 @@ export interface Category {
     emoji: string;
 }
 
+export interface User {
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    password2: string;
+}
+
 export interface HeaderLinkPropTypes {
     children: string;
     href: string;

@@ -1,7 +1,11 @@
 import React from "react";
 import Spinner from "./_components/Spinner";
 function Loading() {
-    return <Spinner />;
+    return (
+        <div className="h-dvh w-dvw">
+            <Spinner />
+        </div>
+    );
 }
 
 export default Loading;

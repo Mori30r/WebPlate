@@ -3,18 +3,21 @@
 import React, { Suspense } from "react";
 import Dummy from "@/app/dummy.json";
 import MealsCardList from "@/app/_components/MealsCardList";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Category, Meal, SortBy } from "@/types/global";
 import Spinner from "@/app/_components/Spinner";
 
-function Page() {
+function Page({
+    searchParams,
+}: {
+    searchParams: { category: string; sortBy: string };
+}) {
     const router = useRouter();
-    const searchParams = useSearchParams();
 
     // handle filter by category
     let filteredMeals: Meal[];
 
-    const categoryId = searchParams.get("category");
+    const categoryId = searchParams.category;
     if (!categoryId) filteredMeals = Dummy.meals;
     else {
         filteredMeals = Dummy.meals.filter((meal) => {
@@ -40,7 +43,7 @@ function Page() {
 
     // handle sort
     let sortedMeals = filteredMeals;
-    const sortBy = searchParams.get("sortBy");
+    const sortBy = searchParams.sortBy;
 
     if (sortBy === "rateHighToLow") {
         sortedMeals = filteredMeals.sort((prev, curr) => curr.rate - prev.rate);
