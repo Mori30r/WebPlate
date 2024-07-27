@@ -7,13 +7,9 @@ import { useForm } from "react-hook-form";
 import { loginSchema } from "../_lib/validators";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { UserLogin } from "@/types/global";
-import Spinner from "./Spinner";
+import { signInAction } from "@/app/_lib/actions";
 
-function LoginForm({
-    handleLogin,
-}: {
-    handleLogin: (userInput: UserLogin) => void;
-}) {
+function LoginForm() {
     const { register, handleSubmit, control, reset } = useForm({
         resolver: yupResolver(loginSchema),
     });
@@ -22,13 +18,13 @@ function LoginForm({
 
     function handleFormSubmit(data: UserLogin) {
         startTransition(() => {
-            handleLogin(data);
+            signInAction(data);
         });
     }
 
     return (
         <form
-            onSubmit={handleSubmit((data) => handleFormSubmit(data))}
+            onSubmit={handleSubmit(handleFormSubmit)}
             className="flex justify-around flex-col h-full gap-4 px-6"
         >
             <div className="flex flex-col gap-4">

@@ -8,6 +8,7 @@ interface InputPropTypes {
     placeHolder: string;
     register: any;
     control: any;
+    defaultValue?: string;
 }
 
 function Input({
@@ -17,6 +18,7 @@ function Input({
     placeHolder,
     register,
     control,
+    defaultValue,
 }: InputPropTypes) {
     const { errors } = useFormState({ control });
     const error = errors?.[id]?.message?.toString();
@@ -26,6 +28,7 @@ function Input({
                 {label}
             </label>
             <input
+                defaultValue={defaultValue}
                 className={`rounded-md text-xs bg-zinc-800 p-3 placeholder-zinc-500 border-0 focus:outline-none ${
                     error
                         ? "ring-1 ring-myRed"

@@ -15,15 +15,7 @@ async function Page() {
 
     if (session?.user) redirect("/dashboard/home");
 
-    async function handleLogin(userInput: UserLogin) {
-        "use server";
-        await signIn("credentials", {
-            redirectTo: "/dashboard/home",
-            ...userInput,
-        });
-    }
-
-    return <LoginForm handleLogin={handleLogin} />;
+    return <LoginForm />;
 }
 
 export default Page;

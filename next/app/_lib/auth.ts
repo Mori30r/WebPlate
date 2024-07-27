@@ -2,7 +2,7 @@ import { User, UserLoginResponse } from "@/types/global";
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
-const baseURL = process.env.API_URL;
+const apiURL = process.env.API_URL;
 
 const authConfig = {
     providers: [
@@ -11,9 +11,8 @@ const authConfig = {
                 email: {},
                 password: {},
             },
-            authorize: async (credentials) => {
-                let user: User;
-                const res = await fetch(`${baseURL}/users/login/`, {
+            async authorize(credentials) {
+                const response = await fetch(`${apiURL}/users/login/`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -22,14 +21,14 @@ const authConfig = {
                     }),
                 });
 
-                if (!res.ok) {
+                if (!response.ok) {
                     throw new Error("Invalid email or password");
                 }
 
-                const data: UserLoginResponse = await res.json();
+                const data: UserLoginResponse = await response.json();
 
                 if (!data.access) return null;
-                user = data.user;
+                const user: User = data.user;
                 return {
                     ...user,
                     accessToken: data.access,
