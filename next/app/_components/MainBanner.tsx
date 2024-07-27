@@ -11,7 +11,7 @@ function MainBanner() {
                 <div className="text-center text-3xl font-bold">
                     ENJOY OUR SERVICE <br /> In 80 AREAS
                 </div>
-                <PrimaryButton paddingX="px-10" href="./">
+                <PrimaryButton paddingX="px-10" href="/dashboard">
                     Choose Your City
                 </PrimaryButton>
                 <Image

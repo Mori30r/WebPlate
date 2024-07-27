@@ -9,7 +9,7 @@ interface Props {
 function MealCard({ meal }: Props) {
     return (
         <div className="bg-darkBg relative rounded-3xl text-center px-5 py-2">
-            <Link href={`/menu/${meal.id}`}>
+            <Link href={`/dashboard/menu/${meal.id}`}>
                 <Image
                     className="absolute -top-1 left-1/2 transform -translate-x-1/2 -translate-y-1/2 aspect-square"
                     src={meal.image}

@@ -5,9 +5,11 @@ import Input from "@/app/_components/Input";
 import Radio from "@/app/_components/Radio";
 import Select from "@/app/_components/Select";
 import SubmitButton from "@/app/_components/SubmitButton";
+import { useForm } from "react-hook-form";
 
 function AddressForm() {
     const [address, setAddress] = useState("new");
+    const { register, handleSubmit, control } = useForm();
     return (
         <>
             <Radio
@@ -45,40 +47,52 @@ function AddressForm() {
                         <Input
                             label="Street"
                             type="string"
-                            name="street"
-                            placeHolder="Enter street name..."
+                            id="street"
+                            placeHolder="Enter street Name..."
+                            register={{ ...register("street") }}
+                            control={control}
                         />
                         <Input
                             label="House number"
                             type="string"
-                            name="house_number"
+                            id="house_number"
                             placeHolder="Enter building number..."
+                            register={{ ...register("house_number") }}
+                            control={control}
                         />
                     </div>
                     <div className="grid grid-cols-4 gap-4">
                         <Input
                             label="Entrance"
                             type="string"
-                            name="entrance"
+                            id="entrance"
                             placeHolder=""
+                            register={{ ...register("entrance") }}
+                            control={control}
                         />
                         <Input
                             label="Floor"
                             type="string"
-                            name="floor"
+                            id="floor"
                             placeHolder=""
+                            register={{ ...register("floor") }}
+                            control={control}
                         />
                         <Input
                             label="Flat"
                             type="string"
-                            name="flat"
+                            id="flat"
                             placeHolder=""
+                            register={{ ...register("flat") }}
+                            control={control}
                         />
                         <Input
                             label="Intercome"
                             type="string"
-                            name="intercome"
+                            id="intercome"
                             placeHolder=""
+                            register={{ ...register("intercome") }}
+                            control={control}
                         />
                     </div>
                 </>

@@ -13,7 +13,7 @@ export default function Page() {
                     <div className="flex flex-col px-2 gap-5">
                         <div className="flex justify-between items-center">
                             <p className="text-3xl font-bold">For you</p>
-                            <PrimaryButton href="./">
+                            <PrimaryButton href="/dashboard">
                                 See More &gt;&gt;
                             </PrimaryButton>
                         </div>

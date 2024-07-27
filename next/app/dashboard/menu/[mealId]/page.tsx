@@ -66,10 +66,10 @@ function Page() {
                             ${meal.price}
                         </p>
                         <div className="flex gap-4">
-                            <PrimaryButton href="" paddingX="px-10">
+                            <PrimaryButton href="/dashboard" paddingX="px-10">
                                 Order now
                             </PrimaryButton>
-                            <PrimaryButton href="" disabled>
+                            <PrimaryButton href="/dashboard" disabled>
                                 Edit ingridients
                             </PrimaryButton>
                         </div>

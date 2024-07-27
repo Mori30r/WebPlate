@@ -6,14 +6,14 @@ import SubmitButton from "./SubmitButton";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../_lib/validators";
-import { User } from "@/types/global";
+import { UserSignup } from "@/types/global";
 
 function SignupForm() {
     const { register, handleSubmit, control, reset } = useForm({
         resolver: yupResolver(signUpSchema),
     });
 
-    async function handleSignup(userInput: User) {
+    async function handleSignup(userInput: UserSignup) {
         // signup(userInput);
         console.log(userInput);
         // reset();

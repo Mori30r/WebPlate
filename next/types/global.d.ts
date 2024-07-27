@@ -27,12 +27,33 @@ export interface Category {
     emoji: string;
 }
 
+export interface Profile {
+    first_name: string;
+    last_name: string;
+    image: string;
+    phone_number: string;
+    addresses: [];
+}
+
 export interface User {
+    username: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    profile: Profile;
+}
+
+export interface UserSignup {
     first_name: string;
     last_name: string;
     email: string;
     password: string;
     password2: string;
+}
+
+export interface UserLogin {
+    email: string;
+    password: string;
 }
 
 export interface HeaderLinkPropTypes {
@@ -52,3 +73,9 @@ export type SortBy =
     | "rateLowToHigh"
     | "priceLowToHigh"
     | "priceHightToLow";
+
+export interface UserLoginResponse {
+    refresh: string;
+    access: string;
+    user: User;
+}

@@ -17,7 +17,7 @@ function MealCardSlider({ meal }: { meal: Meal }) {
                 "translate-y-20"
             }`}
         >
-            <Link href={`/menu/${meal.id}`}>
+            <Link href={`/dashboard/menu/${meal.id}`}>
                 <Image
                     className={`${!slide.isActive && "grayscale"}`}
                     src={meal.image}
