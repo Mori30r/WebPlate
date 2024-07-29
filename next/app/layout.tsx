@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./globals.css";
+import StoreProvider from "./StoreProvider";
 
 const workSans = Work_Sans({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
             <body
                 className={`${workSans.className} bg-zinc-950 text-grey-0 min-h-screen relative`}
             >
-                <main className="max-w-7xl mx-auto">{children}</main>
+                <main className="max-w-7xl mx-auto">
+                    <StoreProvider>{children}</StoreProvider>
+                </main>
             </body>
         </html>
     );

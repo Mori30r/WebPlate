@@ -1,8 +1,19 @@
+"use client";
+
 import React from "react";
 import Cart from "@/app/_components/Cart";
 import AddressForm from "@/app/_components/AddressForm";
+import { useAppSelector } from "@/app/_lib/store/hooks";
 
 function Page() {
+    const { total } = useAppSelector((state) => state.cart);
+
+    if (total == 0)
+        return (
+            <p className="text-center font-light text-md">
+                Your Cart is Empty...
+            </p>
+        );
     return (
         <div className="grid grid-cols-[1.5fr_1fr] gap-5 justify-between">
             <form className="flex flex-col gap-3 w-full">

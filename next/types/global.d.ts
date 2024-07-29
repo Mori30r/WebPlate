@@ -15,6 +15,10 @@ export interface Meal {
     categoryId: number;
 }
 
+export interface MealCartItem extends Meal {
+    quantity: number;
+}
+
 export interface Order {
     id: number;
     date: string;
@@ -25,6 +29,13 @@ export interface Category {
     id: number;
     name: string;
     emoji: string;
+}
+
+export interface Address {
+    name: string;
+    detail: string;
+    latitude: float;
+    longitude: float;
 }
 
 export interface Profile {

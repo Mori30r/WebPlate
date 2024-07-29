@@ -9,7 +9,7 @@ import { HeaderLinkPropTypes, HeaderToolbarPropTypes } from "@/types/global";
 
 function Header() {
     return (
-        <div className="grid grid-rows-1 grid-cols-[1fr_2fr_1fr] max-h-[100px] bg-darkBg px-10 py-4 mt-5 rounded-2xl items-center">
+        <div className="grid grid-rows-1 grid-cols-[1fr_2fr_1fr] max-h-[100px] bg-darkBg px-10 py-4 mt-5 rounded-2xl items-center sticky top-0 z-10 shadow-sm shadow-darkBg">
             <div>
                 <Link href="/dashboard/home" className="font-black">
                     LOGO
