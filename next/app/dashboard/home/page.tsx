@@ -19,7 +19,12 @@ export default function Page() {
                         </div>
                         <div className="grid grid-cols-3 items-center gap-2 gap-y-24 mt-20">
                             {Dummy.meals.map((meal) => {
-                                return <MealCard key={meal.name} meal={meal} />;
+                                return (
+                                    <MealCard
+                                        key={meal.name}
+                                        meal={{ ...meal, quantity: 1 }}
+                                    />
+                                );
                             })}
                         </div>
                     </div>
