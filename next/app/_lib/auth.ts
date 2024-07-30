@@ -1,10 +1,10 @@
 import { User, UserLoginResponse } from "@/types/global";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
 const apiURL = process.env.API_URL;
 
-const authConfig = {
+const authConfig: NextAuthConfig = {
     providers: [
         Credentials({
             async authorize(credentials) {
@@ -61,6 +61,10 @@ const authConfig = {
         },
     },
     secret: process.env.AUTH_SECRET,
+    session: {
+        strategy: "jwt",
+        maxAge: 5 * 24 * 24 * 24, // 5 days
+    },
 };
 
 export const {
