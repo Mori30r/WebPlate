@@ -1,6 +1,6 @@
 "use client";
 
-import { MealCartItem } from "@/types/global";
+import { Meal, MealCartItem } from "@/types/global";
 import Image from "next/image";
 import Link from "next/link";
 import { HiCheck } from "react-icons/hi2";
@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "../_lib/store/hooks";
 import { addMeal, deleteMeal } from "../_lib/store/features/cart/cartSlice";
 
 interface Props {
-    meal: MealCartItem;
+    meal: Meal;
 }
 
 function MealCard({ meal }: Props) {
@@ -36,7 +36,9 @@ function MealCard({ meal }: Props) {
                 {meals.filter((currMeal) => currMeal.id == meal.id).length ==
                 0 ? (
                     <div
-                        onClick={() => dispatch(addMeal(meal))}
+                        onClick={() =>
+                            dispatch(addMeal({ ...meal, quantity: 1 }))
+                        }
                         className="font-black bg-myGreen rounded-full px-4 py-2 cursor-pointer"
                     >
                         +
