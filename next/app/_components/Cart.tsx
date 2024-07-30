@@ -10,8 +10,6 @@ import { addMeal, deleteMeal } from "../_lib/store/features/cart/cartSlice";
 
 function Cart() {
     const { meals, total } = useAppSelector((state) => state.cart);
-    console.log(total);
-
     return (
         <form className="flex flex-col gap-4 bg-darkBg w-full p-4 rounded-2xl">
             <h1 className="text-l font-bold">Cart</h1>
