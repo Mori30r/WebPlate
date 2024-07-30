@@ -57,6 +57,7 @@ const authConfig = {
             return !!auth?.user;
         },
     },
+    secret: process.env.AUTH_SECRET,
 };
 
 export const {
