@@ -80,12 +80,27 @@ WSGI_APPLICATION = 'mealdelivery.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
+if DEBUG:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'deliveryapp-db',  
+                'USER': 'root',
+                'PASSWORD': 'G9pkjvFZ5FtIT6h2CNDBl79x',
+                'HOST': 'deliveryapp-db',  
+                'PORT': '5432',            #TODO: add value to .env this not scuure
+            }
+        }
+
+
 
 
 # Password validation

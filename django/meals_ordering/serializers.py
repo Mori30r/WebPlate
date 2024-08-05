@@ -46,6 +46,7 @@ class UserSerializer(serializers.ModelSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(write_only=True)
     last_name = serializers.CharField(write_only=True)
+    email = serializers.EmailField(required=True)
 
     class Meta:
         model = User
@@ -78,4 +79,4 @@ class LoginSerializer(serializers.Serializer):
         user = authenticate(username=data['email'], password=data['password'])
         if user and user.is_active:
             return user
-        raise serializers.ValidationError("Invalid credentials")
+        raise serializers.ValidationError({"message": "Invalid credentials"})

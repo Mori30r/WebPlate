@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 class UserViewSet(ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes=[IsAuthenticated]
 
     @action(detail=False, methods=['post'], url_path='register', permission_classes=[AllowAny])
     def register(self, request, *args, **kwargs):
