@@ -1,4 +1,4 @@
-import { Address, MealCartItem } from "@/types/global";
+import { Address, Meal, MealCartItem } from "@/types/global";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface initStateType {
@@ -19,7 +19,7 @@ const mySlice = createSlice({
     reducers: {
         addMeal: (
             state: initStateType,
-            action: PayloadAction<MealCartItem>
+            action: PayloadAction<MealCartItem | Meal>
         ) => {
             const meal = state.meals.find(
                 (meal) => meal.id === action.payload.id

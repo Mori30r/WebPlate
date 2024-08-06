@@ -2,14 +2,24 @@
 
 import { UserLogin, UserSignup } from "@/types/global";
 import { signIn } from "./auth";
+import { AuthError } from "next-auth";
 
 const baseURL = process.env.BASE_LOCAL_URL;
 
 export async function signInAction(userInput: UserLogin) {
-    await signIn("credentials", {
-        redirectTo: "/dashboard/home",
-        ...userInput,
-    });
+    try {
+        await signIn("credentials", {
+            ...userInput,
+            redirect: false,
+        });
+    } catch (error: any) {
+        switch (error.type) {
+            case "CallbackRouteError":
+                return { error: "Invalid Email or Password" };
+            default:
+                return { error: "Something went wrong" };
+        }
+    }
 }
 
 export async function registerAction(userInput: UserSignup) {

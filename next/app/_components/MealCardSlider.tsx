@@ -43,9 +43,7 @@ function MealCardSlider({ meal }: { meal: Meal }) {
                         {meals.filter((currMeal) => currMeal.id == meal.id)
                             .length == 0 ? (
                             <div
-                                onClick={() =>
-                                    dispatch(addMeal({ ...meal, quantity: 1 }))
-                                }
+                                onClick={() => dispatch(addMeal(meal))}
                                 className="font-black bg-myGreen rounded-full px-4 py-2 cursor-pointer"
                             >
                                 +

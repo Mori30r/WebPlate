@@ -4,7 +4,7 @@ import PrimaryButton from "@/app/_components/PrimaryButton";
 import Dummy from "@/app/dummy.json";
 import MealCard from "@/app/_components/MealCard";
 
-export default function Page() {
+export default async function Page() {
     return (
         <div className="grid grid-cols-[1fr_350px] gap-5">
             <div className="flex flex-col gap-5">

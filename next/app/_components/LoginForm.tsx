@@ -1,33 +1,43 @@
 "use client";
 
-import React, { useTransition } from "react";
+import React, { useState } from "react";
 import Input from "./Input";
 import SubmitButton from "./SubmitButton";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "../_lib/validators";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { UserLogin } from "@/types/global";
 import { signInAction } from "@/app/_lib/actions";
+import { useRouter } from "next/navigation";
 
 function LoginForm() {
-    const { register, handleSubmit, control, reset } = useForm({
+    const { register, handleSubmit, control }: any = useForm({
         resolver: yupResolver(loginSchema),
     });
 
-    const [isPending, startTransition] = useTransition();
+    const router = useRouter();
 
-    function handleFormSubmit(data: UserLogin) {
-        startTransition(() => {
-            signInAction(data);
-        });
+    const [error, setError] = useState("");
+
+    async function handleFormSubmit(data: any) {
+        const res: any = await signInAction(data);
+
+        if (res?.error) {
+            setError(res?.error);
+        } else {
+            router.replace("/dashboard/home");
+        }
     }
 
     return (
         <form
-            onSubmit={handleSubmit(handleFormSubmit)}
+            action={handleSubmit(handleFormSubmit)}
+            onChange={() => setError("")}
             className="flex justify-around flex-col h-full gap-4 px-6"
         >
             <div className="flex flex-col gap-4">
+                {error && (
+                    <p className="text-myRed font-medium text-sm">{error}</p>
+                )}
                 <Input
                     register={{ ...register("email") }}
                     control={control}
@@ -45,9 +55,7 @@ function LoginForm() {
                     placeHolder="Enter Password..."
                 />
             </div>
-            <SubmitButton disabled={isPending} className="mx-auto">
-                {isPending ? "Loading..." : "Login"}
-            </SubmitButton>
+            <SubmitButton className="mx-auto">Login</SubmitButton>
         </form>
     );
 }

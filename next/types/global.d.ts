@@ -52,6 +52,7 @@ export interface User {
     first_name: string;
     last_name: string;
     profile: Profile;
+    accessToken: string;
 }
 
 export interface UserSignup {

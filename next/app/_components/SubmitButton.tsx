@@ -12,13 +12,17 @@ function SubmitButton({
     className,
     disabled,
 }: SubmitButtonPropsTypes) {
+    const { pending } = useFormStatus();
+    const isPending = pending || disabled;
+
     return (
         <button
             className={`${className} text-sm bg-myRed py-3 px-10 rounded-xl ${
-                disabled && "bg-zinc-700 cursor-not-allowed"
+                isPending && "bg-zinc-700 cursor-not-allowed"
             }`}
+            type="submit"
         >
-            {children}
+            {isPending ? "Loading..." : children}
         </button>
     );
 }
