@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from .models import Profile, Address
 from django.db import transaction
 from django.contrib.auth.models import User
@@ -54,6 +55,9 @@ class RegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
+        if User.objects.filter(username=validated_data['email']).exists():
+            raise serializers.ValidationError({"email": "A user with this email already exists."})
+        
         with transaction.atomic():
             user = User.objects.create_user(
                 email=validated_data['email'],
@@ -68,7 +72,6 @@ class RegisterSerializer(serializers.ModelSerializer):
                 last_name=validated_data['last_name']
             )
         return user
-
     
     
 class LoginSerializer(serializers.Serializer):

@@ -2,7 +2,7 @@ import pytest
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from decimal import Decimal
-from meals_ordering.models import Profile, Category, Ingredient, Meal, Address, Cart, MealItem, Order
+from profile.models import Profile, Category, Ingredient, Meal, Address, Cart, MealItem, Order
 
 @pytest.mark.django_db
 class TestModels:

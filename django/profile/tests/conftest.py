@@ -1,7 +1,7 @@
 import pytest
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
-from meals_ordering.models import Profile, Address
+from profile.models import Profile, Address
 
 
 @pytest.fixture

@@ -8,8 +8,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
-from meals_ordering.models import Address
-from meals_ordering.serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileUpdateSerializer,\
+from profile.models import Address
+from profile.serializers import UserSerializer, RegisterSerializer, LoginSerializer, ProfileUpdateSerializer,\
     AddressSerializer, AddressCreateSerializer, AddressUpdateSerializer
 
 
