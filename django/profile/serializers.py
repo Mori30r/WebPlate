@@ -39,10 +39,11 @@ class ProfileUpdateSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     profile = ProfileUpdateSerializer(read_only=True)
+    user_id = serializers.CharField(source="id")
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'profile']
+        fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'profile']
 
 class RegisterSerializer(serializers.ModelSerializer):
     first_name = serializers.CharField(write_only=True)

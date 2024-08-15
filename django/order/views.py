@@ -1,11 +1,14 @@
 from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
+from django.shortcuts import get_object_or_404
+from rest_framework import status
 from rest_framework.response import Response
 
-from order.serializers import MealSerializer
-from order.models import Meal
+from order.serializers import MealAvailabilitySerializer, MealSerializer, OrderSerializer
+from order.models import Meal, Order
 
 
 class MealViewSet(ModelViewSet):
@@ -25,3 +28,23 @@ class MealViewSet(ModelViewSet):
         
         serializer = self.get_serializer(meals, many=True)
         return Response(serializer.data)
+    
+
+class OrderViewSet(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [IsAuthenticated]
+
+    @action(detail=False, methods=['post'], url_path='create-order')
+    def create_order(self, request):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            order = serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+    @action(detail=True, methods=['get'], url_path='meal-availability')
+    def meal_availability(self, request, pk=None):
+        meal = get_object_or_404(Meal, pk=pk)
+        serializer = MealAvailabilitySerializer(meal)
+        return Response(serializer.data, status=status.HTTP_200_OK)
