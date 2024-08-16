@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.db.models import F
+from django.db import transaction
 from order.models import Meal, Order, OrderItem
 
 class MealSerializer(serializers.ModelSerializer):
@@ -39,37 +41,21 @@ class OrderItemSerializer(serializers.ModelSerializer):
         return obj.meal.price * obj.quantity
     
 class OrderSerializer(serializers.ModelSerializer):
-    items = serializers.SerializerMethodField()
+    order_items = OrderItemSerializer(many=True)
     total_price = serializers.DecimalField(max_digits=10, decimal_places=2, read_only=True)
 
     class Meta:
         model = Order
-        fields = ['id', 'user', 'address', 'items', 'total_price', 'status', 'created_at']
-
-    def get_items(self, obj):
-        order_items = OrderItem.objects.filter(order=obj)
-        return OrderItemSerializer(order_items, many=True).data
+        fields = ['id', 'user', 'address', 'order_items', 'total_price', 'status', 'created_at']
 
     def create(self, validated_data):
-        items_data = self.initial_data.get('items')
+        items_data = validated_data.pop('order_items')
+        
         if not items_data:
-            raise serializers.ValidationError({"items": "This field is required."})
+            raise serializers.ValidationError({"order_items": "This field is required."})
 
-        total_price = 0
-
-        for item_data in items_data:
-            meal = Meal.objects.get(id=item_data['meal'])
-            quantity = item_data['quantity']
-            if meal.quantity_available < quantity:
-                raise serializers.ValidationError({"message": f"Not enough quantity available for {meal.name}"})
-            total_price += meal.price * quantity
-
-        order = Order.objects.create(total_price=total_price, **validated_data)
-
-        for item_data in items_data:
-            meal = Meal.objects.get(id=item_data['meal'])
-            meal.quantity_available -= quantity
-            meal.save(update_fields=["quantity_available"])
-            OrderItem.objects.create(order=order, meal=meal, quantity=item_data['quantity'])
+        with transaction.atomic():
+            order = Order.objects.create(**validated_data)
+            order.add_items(items_data)
 
         return order
