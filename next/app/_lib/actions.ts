@@ -1,10 +1,11 @@
 "use server";
 
 import { UserLogin, UserSignup } from "@/types/global";
-import { signIn } from "./auth";
-import { AuthError } from "next-auth";
+import { auth, signIn } from "./auth";
+import { revalidatePath } from "next/cache";
 
 const baseURL = process.env.BASE_LOCAL_URL;
+const apiURL = process.env.API_URL;
 
 export async function signInAction(userInput: UserLogin) {
     try {
@@ -38,4 +39,24 @@ export async function registerAction(userInput: UserSignup) {
             password: userInput.password,
         });
     }
+}
+
+export async function createAddress(userInput: FormData) {
+    const session: any = await auth();
+    const body = {
+        name: userInput.get("name"),
+        detail: userInput.get("detail"),
+        latitude: userInput.get("latitude"),
+        longitude: userInput.get("longitude"),
+    };
+
+    await fetch(`${apiURL}/users/address/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${session?.user.accessToken}`,
+        },
+        body: JSON.stringify(body),
+    });
+    revalidatePath("/dashboard/order");
 }

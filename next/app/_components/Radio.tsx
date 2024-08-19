@@ -5,10 +5,11 @@ interface Props {
     name: string;
     value: string;
     id: string;
-    onChange?: () => void;
+    onChange?: any;
+    defaultChecked?: boolean;
 }
 
-function RadioInput({ children, name, value, id, onChange }: Props) {
+function Radio({ children, name, value, id, onChange, defaultChecked }: Props) {
     return (
         <div className="flex gap-2 items-center">
             <div className="flex items-center relative">
@@ -19,6 +20,7 @@ function RadioInput({ children, name, value, id, onChange }: Props) {
                     name={name}
                     value={value}
                     id={id}
+                    defaultChecked={defaultChecked}
                 />
                 <div className="absolute inset-0 m-auto w-2 h-2 rounded-full peer-checked:bg-myGreen peer-checked:peer-disabled:bg-gray-400" />
             </div>
@@ -29,4 +31,4 @@ function RadioInput({ children, name, value, id, onChange }: Props) {
     );
 }
 
-export default RadioInput;
+export default Radio;

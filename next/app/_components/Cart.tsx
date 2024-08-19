@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -7,9 +9,15 @@ import CartOrderSwitch from "./CartOrderSwitch";
 import { MealCartItem } from "@/types/global";
 import { useAppDispatch, useAppSelector } from "../_lib/store/hooks";
 import { addMeal, deleteMeal } from "../_lib/store/features/cart/cartSlice";
+import { redirect, useSearchParams } from "next/navigation";
 
 function Cart() {
+    const searchParams = useSearchParams();
+    const address = searchParams.get("address");
+
     const { meals, total } = useAppSelector((state) => state.cart);
+
+    if (total == 0) redirect("/dashboard/menu");
     return (
         <form className="flex flex-col gap-4 bg-darkBg w-full p-4 rounded-2xl">
             <h1 className="text-l font-bold">Cart</h1>
@@ -21,7 +29,9 @@ function Cart() {
                     <p>${total}</p>
                 </div>
             </div>
-            <SubmitButton>Order</SubmitButton>
+            <SubmitButton disabled={address === "new" || !address}>
+                Order
+            </SubmitButton>
         </form>
     );
 }

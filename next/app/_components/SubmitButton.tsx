@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useFormStatus } from "react-dom";
 
@@ -13,12 +15,12 @@ function SubmitButton({
     disabled,
 }: SubmitButtonPropsTypes) {
     const { pending } = useFormStatus();
-    const isPending = pending || disabled;
+    const isPending = pending;
 
     return (
         <button
             className={`${className} text-sm bg-myRed py-3 px-10 rounded-xl ${
-                isPending && "bg-zinc-700 cursor-not-allowed"
+                (isPending || disabled) && "bg-zinc-700 cursor-not-allowed"
             }`}
             type="submit"
         >

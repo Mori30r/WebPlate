@@ -1,19 +1,14 @@
-"use client";
-
 import React from "react";
 import Cart from "@/app/_components/Cart";
 import AddressForm from "@/app/_components/AddressForm";
-import { useAppSelector } from "@/app/_lib/store/hooks";
+import { auth } from "@/app/_lib/auth";
+import { Address } from "@/types/global";
+import { getAddresses } from "@/app/_lib/data-service";
 
-function Page() {
-    const { total } = useAppSelector((state) => state.cart);
-
-    if (total == 0)
-        return (
-            <p className="text-center font-light text-md">
-                Your Cart is Empty...
-            </p>
-        );
+async function Page() {
+    const session: any = await auth();
+    const accessToken = session?.user?.accessToken;
+    const addressList: Address[] = await getAddresses(accessToken);
     return (
         <div className="grid grid-cols-[1.5fr_1fr] gap-5 justify-between">
             <form className="flex flex-col gap-3 w-full">
@@ -27,7 +22,7 @@ function Page() {
                         <div className="bg-myGreen w-1/2 rounded-full h-2"></div>
                     </div>
                 </div>
-                <AddressForm />
+                <AddressForm addressList={addressList} />
             </form>
             <Cart />
         </div>

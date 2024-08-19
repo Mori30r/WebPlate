@@ -32,6 +32,7 @@ export interface Category {
 }
 
 export interface Address {
+    id: number;
     name: string;
     detail: string;
     latitude: float;
@@ -78,6 +79,7 @@ export interface HeaderToolbarPropTypes {
     color: string;
     isProfile?: boolean;
     href: string;
+    disabled?: boolean;
 }
 
 export type SortBy =

@@ -53,6 +53,7 @@ function HeaderToolbarItem({
     color,
     isProfile,
     href,
+    disabled,
 }: HeaderToolbarPropTypes) {
     return (
         <Link
