@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { createRef, useState } from "react";
 import SubmitButton from "@/app/_components/SubmitButton";
 import { Address } from "@/types/global";
 import Radio from "./Radio";
@@ -30,7 +30,12 @@ function AddressForm({ addressList }: { addressList: Address[] }) {
 
     async function handleSubmitCreateAddress(userInput: FormData) {
         await createAddress(userInput);
+        handleCloseModal();
+    }
+
+    function handleCloseModal() {
         const params = new URLSearchParams(searchParams);
+        params.delete("address");
         params.delete("latitude");
         params.delete("longitude");
         router.replace(`${pathname}?${params.toString()}`);
@@ -62,12 +67,12 @@ function AddressForm({ addressList }: { addressList: Address[] }) {
                     New address
                 </Radio>
 
-                <Modal isOpen={isModalOpen}>
+                <Modal isOpen={isModalOpen} handleCloseModal={handleCloseModal}>
                     <form
                         action={handleSubmitCreateAddress}
                         className="grid grid-cols-2 gap-5 h-full"
                     >
-                        <div className="flex flex-col justify-between">
+                        <div className="flex flex-col justify-evenly">
                             <div className="flex flex-col gap-2 font-medium">
                                 <p className="font-sm">
                                     Click on the Map to use Your Location
@@ -106,7 +111,7 @@ function AddressForm({ addressList }: { addressList: Address[] }) {
                                 Create new Address
                             </SubmitButton>
                         </div>
-                        <div className="h-full">
+                        <div className="flex justify-center items-center">
                             <Map />
                         </div>
                     </form>
