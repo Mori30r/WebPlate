@@ -1,10 +1,15 @@
 import MainBanner from "@/app/_components/MainBanner";
 import LastOrdersSideBar from "@/app/_components/LastOrdersSideBar";
 import PrimaryButton from "@/app/_components/PrimaryButton";
-import Dummy from "@/app/dummy.json";
 import MealCard from "@/app/_components/MealCard";
+import { Meal } from "@/types/global";
+import { getMeals } from "@/app/_lib/data-service";
+import { Suspense } from "react";
+import Spinner from "@/app/_components/Spinner";
 
 export default async function Page() {
+    const res = await getMeals();
+    const meals: Meal[] = res.results;
     return (
         <div className="grid grid-cols-[1fr_350px] gap-5">
             <div className="flex flex-col gap-5">
@@ -18,9 +23,13 @@ export default async function Page() {
                             </PrimaryButton>
                         </div>
                         <div className="grid grid-cols-3 items-center gap-2 gap-y-24 mt-20">
-                            {Dummy.meals.map((meal) => {
-                                return <MealCard key={meal.name} meal={meal} />;
-                            })}
+                            <Suspense fallback={<Spinner />}>
+                                {meals.map((meal) => {
+                                    return (
+                                        <MealCard key={meal.name} meal={meal} />
+                                    );
+                                })}
+                            </Suspense>
                         </div>
                     </div>
                 </div>

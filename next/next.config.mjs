@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "loremflickr.com",
+                hostname: "storage.iran.liara.space",
             },
         ],
     },

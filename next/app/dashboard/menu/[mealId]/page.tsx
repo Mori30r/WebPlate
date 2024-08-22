@@ -1,20 +1,16 @@
-"use client";
-
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useParams } from "next/navigation";
-import Dummy from "@/app/dummy.json";
 import PrimaryButton from "@/app/_components/PrimaryButton";
-import DetailSlide from "@/app/_components/MealCardSlider";
 import "swiper/css";
 
 import { Meal } from "@/types/global";
+import { getMeal, getMeals } from "@/app/_lib/data-service";
+import MealsSlider from "@/app/_components/MealsSlider/MealsSlider";
 
-function Page() {
-    const mealId = Number(useParams().mealId);
-    const meal: Meal = Dummy.meals.filter(
-        (el): el is Meal => el !== undefined && el.id === mealId
-    )[0];
+async function Page({ params }: any) {
+    const mealId = Number(params.mealId);
+    const meal: Meal = await getMeal(mealId);
+    const res = await getMeals();
+    const meals: Meal[] = res.results;
 
     return (
         <div className="flex flex-col gap-10 overflow-hidden justify-between relative">
@@ -41,24 +37,24 @@ function Page() {
                             <p>⚖ {meal.weight}</p>
                         </div>
                         <div className="flex justify-between">
-                            {meal.vegtables.slice(0, 6).map((vegtable) => {
+                            {meal.ingredients.slice(0, 6).map((ingredient) => {
                                 return (
                                     <div
                                         className="bg-zinc-800 p-2 rounded-md"
-                                        key={vegtable.name}
+                                        key={ingredient.name}
                                     >
                                         <Image
-                                            src={vegtable.emoji}
+                                            src={ingredient.emoji}
                                             width={20}
                                             height={20}
-                                            alt={vegtable.name}
+                                            alt={ingredient.name}
                                         />
                                     </div>
                                 );
                             })}
-                            {meal.vegtables.length > 6 && (
+                            {meal.ingredients.length > 6 && (
                                 <div className="bg-zinc-200 p-2 rounded-md text-zinc-800 font-bold">
-                                    +{meal.vegtables.length - 6}
+                                    +{meal.ingredients.length - 6}
                                 </div>
                             )}
                         </div>
@@ -76,21 +72,7 @@ function Page() {
                     </div>
                 </div>
             </div>
-            <div>
-                <Swiper centeredSlides initialSlide={3} loop slidesPerView={5}>
-                    {Dummy.meals
-                        .filter((meal) => {
-                            return meal.id !== mealId;
-                        })
-                        .map((meal) => {
-                            return (
-                                <SwiperSlide key={meal.id}>
-                                    <DetailSlide meal={meal} />
-                                </SwiperSlide>
-                            );
-                        })}
-                </Swiper>
-            </div>
+            <MealsSlider meals={meals} currentMealId={mealId} />
         </div>
     );
 }

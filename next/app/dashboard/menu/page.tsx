@@ -1,45 +1,35 @@
-"use client";
-
 import React, { Suspense } from "react";
-import Dummy from "@/app/dummy.json";
 import MealsCardList from "@/app/_components/MealsCardList";
-import { useRouter } from "next/navigation";
-import { Category, Meal, SortBy } from "@/types/global";
+import { Category, Meal } from "@/types/global";
 import Spinner from "@/app/_components/Spinner";
+import { getCategories, getMeals } from "@/app/_lib/data-service";
+import Sort from "@/app/_components/Sort";
 
-function Page({
+async function Page({
     searchParams,
 }: {
     searchParams: { category: string; sortBy: string };
 }) {
-    const router = useRouter();
+    const [mealsRes, categoriesRes] = await Promise.all([
+        getMeals(),
+        getCategories(),
+    ]);
+    const allMeals: Meal[] = mealsRes.results;
+    const allCategories: Category[] = categoriesRes.results;
 
     // handle filter by category
     let filteredMeals: Meal[];
 
     const categoryId = searchParams.category;
-    if (!categoryId) filteredMeals = Dummy.meals;
+    if (!categoryId) filteredMeals = allMeals;
     else {
-        filteredMeals = Dummy.meals.filter((meal) => {
-            return meal.categoryId === Number(categoryId);
+        filteredMeals = allMeals.filter((meal) => {
+            return meal.category === Number(categoryId);
         });
     }
-    const category: Category = Dummy.categories.filter((category) => {
+    const category: Category = allCategories.filter((category) => {
         return category.id === Number(categoryId);
     })[0];
-
-    function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
-        const sortBy = e.target.value as SortBy;
-        const params = new URLSearchParams(searchParams);
-
-        if (!sortBy) {
-            params.delete("sortBy", "");
-            router.replace(`menu`);
-        } else {
-            params.set("sortBy", sortBy);
-            router.replace(`menu?${params.toString()}`);
-        }
-    }
 
     // handle sort
     let sortedMeals = filteredMeals;
@@ -66,27 +56,7 @@ function Page({
         <div className="mb-5">
             <div className="flex justify-between items-center pl-10">
                 <h1 className="font-bold text-xl">{category?.name}</h1>
-                <div className="flex gap-5 font-bold text-sm text-zinc-500">
-                    <p>Sort By:</p>
-                    <select
-                        onChange={handleChange}
-                        className="bg-transparent text-zinc-300"
-                    >
-                        <option value="">All Foods</option>
-                        <option value="rateHighToLow">
-                            Rating: from highest to lowest
-                        </option>
-                        <option value="rateLowToHigh">
-                            Rating: from lowest to highest
-                        </option>
-                        <option value="priceLowToHigh">
-                            Price: from lowest to highest
-                        </option>
-                        <option value="priceHightToLow">
-                            Price: from highest to lowest
-                        </option>
-                    </select>
-                </div>
+                <Sort />
             </div>
             <Suspense fallback={<Spinner />}>
                 <div className="grid grid-cols-4 gap-5 gap-y-24 mt-24">

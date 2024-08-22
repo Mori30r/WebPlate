@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../_components/Header";
-import CategoriesSideBar from "../_components/CategoriesSideBar";
+import CategoriesSideBar from "../_components/CategorySideBar/CategoriesSideBar";
 
 function DashboardLayout({
     children,

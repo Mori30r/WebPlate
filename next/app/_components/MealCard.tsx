@@ -27,7 +27,7 @@ function MealCard({ meal }: Props) {
                 />
                 <p className="mt-20 font-bold">{meal.name}</p>
                 <p className="text-sm text-zinc-500">
-                    {meal.vegtables.map((vegtable) => `${vegtable.name}, `)}
+                    {meal.ingredients.map((vegtable) => `${vegtable.name}, `)}
                 </p>
             </Link>
             <div className="flex h-8 items-center justify-between">

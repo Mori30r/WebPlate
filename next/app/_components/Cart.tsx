@@ -66,8 +66,8 @@ function CartMealsList({ meals }: CartMealsProps) {
                                 </p>
                             </div>
                             <p className="text-xs font-light text-zinc-400 pr-10">
-                                {meal.vegtables
-                                    .map((vegtable) => `${vegtable.name}, `)
+                                {meal.ingredients
+                                    .map((ingredient) => `${ingredient.name}, `)
                                     .slice(0, 6)}
                             </p>
                             <div className="flex justify-between">

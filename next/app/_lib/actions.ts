@@ -32,7 +32,7 @@ export async function registerAction(userInput: UserSignup) {
         body: JSON.stringify(userInput),
     });
     if (!response.ok) {
-        throw new Error("Network response was not ok");
+        return { error: "Network response was not ok" };
     } else {
         await signInAction({
             email: userInput.email,
@@ -43,6 +43,7 @@ export async function registerAction(userInput: UserSignup) {
 
 export async function createAddress(userInput: FormData) {
     const session: any = await auth();
+    const accessToken = session?.user.accessToken;
     const body = {
         name: userInput.get("name"),
         detail: userInput.get("detail"),
@@ -54,7 +55,7 @@ export async function createAddress(userInput: FormData) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${session?.user.accessToken}`,
+            Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(body),
     });

@@ -1,13 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useSwiperSlide } from "swiper/react";
-import { Meal, MealCartItem } from "@/types/global";
-import { useAppDispatch, useAppSelector } from "../_lib/store/hooks";
-import { addMeal, deleteMeal } from "../_lib/store/features/cart/cartSlice";
+import { Meal } from "@/types/global";
+import { useAppDispatch, useAppSelector } from "../../_lib/store/hooks";
+import { addMeal, deleteMeal } from "../../_lib/store/features/cart/cartSlice";
 import { HiCheck } from "react-icons/hi2";
 
-function MealCardSlider({ meal }: { meal: Meal }) {
+function MealSlide({ meal }: { meal: Meal }) {
     const dispatch = useAppDispatch();
     const meals = useAppSelector((state) => state.cart.meals);
     const slide = useSwiperSlide();
@@ -35,7 +37,9 @@ function MealCardSlider({ meal }: { meal: Meal }) {
                 <div className="flex flex-col gap-3 justify-between items-center">
                     <h2>{meal.name}</h2>
                     <p className="h-10 text-sm text-zinc-500 overflow-hidden">
-                        {meal.vegtables.map((vegtable) => `${vegtable.name}, `)}
+                        {meal.ingredients.map(
+                            (ingredient) => `${ingredient.name}, `
+                        )}
                     </p>
                     <div className="flex self-stretch items-center justify-between">
                         <p className="font-bold">🔥 {meal.calories} Kcal</p>
@@ -63,4 +67,4 @@ function MealCardSlider({ meal }: { meal: Meal }) {
     );
 }
 
-export default MealCardSlider;
+export default MealSlide;

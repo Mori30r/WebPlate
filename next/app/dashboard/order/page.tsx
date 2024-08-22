@@ -1,14 +1,11 @@
 import React from "react";
 import Cart from "@/app/_components/Cart";
 import AddressForm from "@/app/_components/AddressForm";
-import { auth } from "@/app/_lib/auth";
 import { Address } from "@/types/global";
 import { getAddresses } from "@/app/_lib/data-service";
 
 async function Page() {
-    const session: any = await auth();
-    const accessToken = session?.user?.accessToken;
-    const addressList: Address[] = await getAddresses(accessToken);
+    const addressList: Address[] = await getAddresses();
     return (
         <div className="grid grid-cols-[1.5fr_1fr] gap-5 justify-between">
             <form className="flex flex-col gap-3 w-full">

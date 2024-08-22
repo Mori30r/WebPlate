@@ -1,4 +1,4 @@
-export interface Vegtables {
+export interface Ingredients {
     name: string;
     emoji: string;
 }
@@ -8,11 +8,11 @@ export interface Meal {
     name: string;
     price: number;
     weight: number;
-    vegtables: Vegtables[];
+    ingredients: Ingredients[];
     image: string;
     calories: number;
     rate: float;
-    categoryId: number;
+    category: number;
 }
 
 export interface MealCartItem extends Meal {

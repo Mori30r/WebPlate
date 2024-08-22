@@ -1,4 +1,5 @@
 import { signInAction } from "@/app/_lib/actions";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 const apiURL = process.env.API_URL;
@@ -18,6 +19,8 @@ export async function POST(request: Request) {
             }),
         });
         const data = await response.json();
+
+        redirect("/dashboard/home");
     } catch (e) {}
 
     return NextResponse.json({ message: "success" });

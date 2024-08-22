@@ -1,33 +1,41 @@
 "use client";
 
-import React, { startTransition, useTransition } from "react";
+import React, { startTransition, useState, useTransition } from "react";
 import Input from "./Input";
 import SubmitButton from "./SubmitButton";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { signUpSchema } from "../_lib/validators";
-import { registerAction } from "../_lib/actions";
+import { registerAction, signInAction } from "../_lib/actions";
 import { UserSignup } from "@/types/global";
+import { useRouter } from "next/navigation";
 
 function SignupForm() {
-    const { register, handleSubmit, control, reset } = useForm({
+    const { register, handleSubmit, control, reset }: any = useForm({
         resolver: yupResolver(signUpSchema),
     });
 
-    const [isPending, startTransition] = useTransition();
+    const [error, setError] = useState("");
+    const router = useRouter();
 
-    function handleFormSubmit(data: UserSignup) {
-        startTransition(() => {
-            registerAction(data);
-        });
+    async function handleFormSubmit(data: UserSignup) {
+        const res = await registerAction(data);
+        if (res?.error) {
+            setError(res?.error);
+        } else {
+            router.replace("/dashboard/home");
+        }
     }
 
     return (
         <form
-            onSubmit={handleSubmit(handleFormSubmit)}
+            action={handleSubmit(handleFormSubmit)}
             className="flex flex-col h-full gap-4 px-6"
         >
             <div className="flex justify-between gap-4">
+                {error && (
+                    <p className="text-myRed font-medium text-sm">{error}</p>
+                )}
                 <Input
                     register={{ ...register("first_name") }}
                     control={control}
@@ -74,9 +82,7 @@ function SignupForm() {
                 placeHolder="Enter Your Password Again"
                 defaultValue="test"
             />
-            <SubmitButton disabled={isPending} className="mx-auto">
-                {isPending ? "Loading..." : "Let's Start"}
-            </SubmitButton>
+            <SubmitButton className="mx-auto">Let&rsquo;s Start</SubmitButton>
         </form>
     );
 }
