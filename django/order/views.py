@@ -7,8 +7,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 
-from order.serializers import MealAvailabilitySerializer, MealSerializer, OrderSerializer
-from order.models import Meal, Order
+from order.serializers import CategorySerializer, MealAvailabilitySerializer, MealSerializer, OrderSerializer
+from order.models import Category, Meal, Order
 
 
 class MealViewSet(ModelViewSet):
@@ -48,3 +48,9 @@ class OrderViewSet(ModelViewSet):
         meal = get_object_or_404(Meal, pk=pk)
         serializer = MealAvailabilitySerializer(meal)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+
+class CategoryViewSet(ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+    http_method_names = ['get']

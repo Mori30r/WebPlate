@@ -1,9 +1,21 @@
 from rest_framework import serializers
 from django.db.models import F
 from django.db import transaction
-from order.models import Meal, Order, OrderItem
+from order.models import Category, Ingredient, Meal, Order, OrderItem
+
+
+class IngredientSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = [
+            'id',
+            'name',
+            'emoji',
+        ]
 
 class MealSerializer(serializers.ModelSerializer):
+    ingredients = IngredientSerializer(read_only=True, many=True)
+    
     class Meta:
         model = Meal
         fields = [
@@ -16,7 +28,8 @@ class MealSerializer(serializers.ModelSerializer):
             'price', 
             'image', 
             'category', 
-            'quantity_available'
+            'quantity_available',
+            'ingredients',
         ]
         
 class MealAvailabilitySerializer(serializers.ModelSerializer):
@@ -59,3 +72,8 @@ class OrderSerializer(serializers.ModelSerializer):
             order.add_items(items_data)
 
         return order
+    
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name', 'emoji']

@@ -5,6 +5,7 @@ from rest_framework.exceptions import ValidationError
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    emoji = models.ImageField(upload_to='category/', null=True)
 
     def __str__(self):
         return self.name
