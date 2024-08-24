@@ -1,14 +1,16 @@
 from rest_framework.pagination import PageNumberPagination
 
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import action
 from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import ValidationError, NotFound
 from rest_framework import status
 from rest_framework.response import Response
 
-from order.serializers import CategorySerializer, MealAvailabilitySerializer, MealSerializer, OrderSerializer
-from order.models import Category, Meal, Order
+from order.serializers import CategorySerializer, DiscountCodeDetailSerializer, MealAvailabilitySerializer, MealSerializer, OrderSerializer
+from order.models import Category, DiscountCode, Meal, Order
 
 
 class MealViewSet(ModelViewSet):
@@ -34,6 +36,9 @@ class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user)
 
     @action(detail=False, methods=['post'], url_path='create-order')
     def create_order(self, request):
@@ -54,3 +59,33 @@ class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     http_method_names = ['get']
+    
+
+class DiscountCodeDetailView(APIView):
+    
+    def get_queryset(self):
+        return DiscountCode.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        code = request.query_params.get('code')
+        if not code:
+            return Response({"error": "Discount code is required."}, status=400)
+
+        try:
+            discount_code = DiscountCode.objects.get(code=code)
+        except DiscountCode.DoesNotExist:
+            raise NotFound({"error": "Discount code not found."})
+
+        try:
+            discount_code.is_valid(self.request.user)
+        except ValidationError as e:
+            return Response({"error": str(e)}, status=400)
+
+        serializer = DiscountCodeDetailSerializer({
+            'type': discount_code.discount_type,
+            'value': discount_code.discount_value,
+            'limit': discount_code.min_purchase_amount,
+            'expiration_date': discount_code.expiration_date
+        })
+        
+        return Response(serializer.data, status=200)

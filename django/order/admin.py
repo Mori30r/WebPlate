@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from order.models import  Category, Ingredient, Meal, Order
+from order.models import  Category, DiscountCode, Ingredient, Meal, Order
 
 
 
@@ -31,3 +31,11 @@ class MealAdmin(admin.ModelAdmin):
     search_fields = ('name', 'category__name')
     list_filter = ('category', 'rate')
     filter_horizontal = ('ingredients',)
+
+@admin.register(DiscountCode)
+class DiscountCodeAdmin(admin.ModelAdmin):
+    list_display = ('code', 'discount_type', 'discount_value', 'applicable_meal',
+                    'applicable_category', 'min_purchase_amount', 'max_discount_amount', 'usage_limit', 'usage_count')
+    fields = ('code', 'discount_type', 'discount_value', 'applicable_meal', 
+              'applicable_category', 'min_purchase_amount', 'max_discount_amount', 
+              'expiration_date', 'usage_limit', 'used_by_users')

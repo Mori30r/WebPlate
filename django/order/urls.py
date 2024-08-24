@@ -9,4 +9,5 @@ router.register(r'order', views.OrderViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('discount-code/', views.DiscountCodeDetailView.as_view(), name='discount-code-detail'),
 ]
