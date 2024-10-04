@@ -27,9 +27,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
+
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',')
 
 
 # Application definition
@@ -92,15 +94,16 @@ if DEBUG:
         }
 else:
     DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'deliveryapp-db',  
-                'USER': 'root',
-                'PASSWORD': 'G9pkjvFZ5FtIT6h2CNDBl79x',
-                'HOST': 'deliveryapp-db',  
-                'PORT': '5432',            #TODO: add value to .env this not scuure
-            }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+            'HOST': os.getenv('DATABASE_HOST'),
+            'PORT': os.getenv('DATABASE_PORT', '5432'),
         }
+    }
+
 
 
 
@@ -132,7 +135,7 @@ LOGGING = {
         "console": {"class": "logging.StreamHandler", "level": "INFO"},
         "file": {
             "class": "logging.FileHandler",
-            "filename": "/tmp/delevery.log",
+            "filename": "gunicorn.log",
             "formatter": "verbose",
         },
     },
